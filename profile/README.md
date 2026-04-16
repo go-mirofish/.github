@@ -13,11 +13,11 @@
 [![Discord](https://img.shields.io/badge/Discord-Join-5865F2?style=flat-square&logo=discord&logoColor=white)](http://discord.gg/ePf5aPaHnA)
 [![X](https://img.shields.io/badge/X-Follow-000000?style=flat-square&logo=x&logoColor=white)](https://x.com/mirofish_ai)
 
-[English](./README.md) | [中文文档](./README-ZH.md)
+[English](https://github.com/go-mirofish/go-mirofish/blob/main/README.md) | [中文文档](https://github.com/go-mirofish/go-mirofish/blob/main/README-ZH.md)
 
 </div>
 
-Upload documents, describe what you want to predict, and get a full simulation report—**on your laptop**.
+Upload documents, describe what you want to predict, and get a full simulation report **on your laptop**.
 
 > [!NOTE]
 > **go-mirofish** is a lightweight fork of [MiroFish](https://github.com/666ghj/MiroFish). The AI features and five-step workflow are the same; **only the web and runtime layer** is optimized for local-first, lower-overhead deployment.
@@ -32,7 +32,7 @@ Upload documents, describe what you want to predict, and get a full simulation r
 | Setup | Multi-step dev stack | **One command** (`./start.sh`) on the roadmap; Docker or npm today |
 
 > [!NOTE]
-> Targets above depend on workload, model choice, and simulation size. See [Installation](docs/getting-started/installation.md) for what works **today** in this repository.
+> Targets above depend on workload, model choice, and simulation size. See [Installation](https://github.com/go-mirofish/go-mirofish/blob/main/docs/getting-started/installation.md) for what works **today** in this repository.
 
 ## Quick start
 
@@ -70,9 +70,6 @@ Upload documents, describe what you want to predict, and get a full simulation r
 
 > [!IMPORTANT]
 > You need **`LLM_API_KEY`** and **`ZEP_API_KEY`** for the default cloud path. For **local LLMs** (no cloud key for the model), see [Ollama setup](docs/configuration/ollama.md).
-
-> [!NOTE]
-> A single **`./start.sh`** entrypoint (prebuilt Go gateway + Python, no Node for daily use) is **planned** for this fork. Until it lands in-repo, use **Docker** or **`npm run dev`** as shown—details in [Installation](docs/getting-started/installation.md).
 
 ## How it works (5 steps)
 
