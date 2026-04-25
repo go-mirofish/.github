@@ -2,7 +2,7 @@
 
 <img src="https://github.com/go-mirofish/go-mirofish/blob/main/static/image/go-mirofish-thumbnail.png" alt="go-mirofish logo" width="55%"/>
 
-**MiroFish, lightweight and local-first**
+**Go-MiroFish, lightweight and local-first**
 
 [![GitHub Stars](https://img.shields.io/github/stars/go-mirofish/go-mirofish?style=flat-square&color=DAA520)](https://github.com/go-mirofish/go-mirofish/stargazers)
 [![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL--3.0-blue.svg?style=flat-square)](./LICENSE)
