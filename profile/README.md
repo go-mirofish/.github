@@ -12,7 +12,7 @@
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-ffdd00?style=flat-square&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/justinedevs)
 [![Discord](https://img.shields.io/badge/Discord-Join-5865F2?style=flat-square&logo=discord&logoColor=white)](http://discord.gg/ePf5aPaHnA)
 [![X](https://img.shields.io/badge/X-Follow-000000?style=flat-square&logo=x&logoColor=white)](https://x.com/mirofish_ai)
-
+<a href="https://www.producthunt.com/products/go-mirofish?embed=true&amp;utm_source=badge-featured&amp;utm_medium=badge&amp;utm_campaign=badge-go-mirofish" target="_blank" rel="noopener noreferrer"><img alt="go-mirofish - Fast local Go AI swarm engine – predict anything with agents | Product Hunt" width="250" height="54" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1132196&amp;theme=light&amp;t=1777125819933"></a>
 [English](https://github.com/go-mirofish/go-mirofish/blob/main/README.md) | [中文文档](https://github.com/go-mirofish/go-mirofish/blob/main/README-ZH.md)
 
 </div>
