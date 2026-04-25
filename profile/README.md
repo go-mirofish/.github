@@ -13,30 +13,14 @@
 [![Discord](https://img.shields.io/badge/Discord-Join-5865F2?style=flat-square&logo=discord&logoColor=white)](http://discord.gg/ePf5aPaHnA)
 [![X](https://img.shields.io/badge/X-Follow-000000?style=flat-square&logo=x&logoColor=white)](https://x.com/mirofish_ai)
 <a href="https://www.producthunt.com/products/go-mirofish?embed=true&amp;utm_source=badge-featured&amp;utm_medium=badge&amp;utm_campaign=badge-go-mirofish" target="_blank" rel="noopener noreferrer"><img alt="go-mirofish - Fast local Go AI swarm engine – predict anything with agents | Product Hunt" width="250" height="54" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1132196&amp;theme=light&amp;t=1777125819933"></a>
-[English](https://github.com/go-mirofish/go-mirofish/blob/main/README.md) | [中文文档](https://github.com/go-mirofish/go-mirofish/blob/main/README-ZH.md)
 
 </div>
 
 Upload documents, describe what you want to predict, and get a full simulation report **on your laptop**.
 
-> [!NOTE]
-> **go-mirofish** is a lightweight fork of [MiroFish](https://github.com/666ghj/MiroFish). The AI features and five-step workflow are the same; **only the web and runtime layer** is optimized for local-first, lower-overhead deployment.
-
-## What changed vs MiroFish
-
-| | MiroFish | go-mirofish |
-| --- | --- | --- |
-| RAM usage | ~500MB–1GB typical | ~350–600MB target |
-| Startup | ~5–10s typical | ~1–2s target (hybrid stack) |
-| Hardware | 8GB+ RAM comfortable | 4GB+ RAM target |
-| Setup | Multi-step dev stack | **One command** (`./start.sh`) on the roadmap; Docker or npm today |
-
-> [!NOTE]
-> Targets above depend on workload, model choice, and simulation size. See [Installation](https://github.com/go-mirofish/go-mirofish/blob/main/docs/getting-started/installation.md) for what works **today** in this repository.
-
 ## Quick start
 
-**Goal:** running UI + API on a fresh machine in a few minutes.
+**Canonical development:** Go gateway **in Docker** on :3000; Vue **locally** via Vite on :5173. You need **Docker**, **Node 18+**, and a one-time **`npm run setup`**.
 
 1. **Clone**
 
@@ -45,39 +29,105 @@ Upload documents, describe what you want to predict, and get a full simulation r
    cd go-mirofish
    ```
 
-2. **Configure**
+2. **Configure and install**
 
    ```bash
    cp .env.example .env
+   npm run setup
    ```
 
-   Edit `.env` and set at least **`LLM_API_KEY`** and **`ZEP_API_KEY`**.
+   Edit `.env` and set **`LLM_API_KEY`** and **`ZEP_API_KEY`**.
 
-3. **Run** (pick one)
+3. **Start the API (Docker)**
 
    ```bash
-   docker compose up -d
+   make up
    ```
 
-   **Or** from source (Node18+, Python 3.11+, [uv](https://docs.astral.sh/uv/) recommended):
+   - API / health: [http://127.0.0.1:3000/health](http://127.0.0.1:3000/health)
+
+4. **Start the UI (local — second terminal)**
 
    ```bash
-   npm run setup:all && npm run dev
+   npm run dev
    ```
 
-   - App UI: [http://localhost:3000](http://localhost:3000)
-   - API: [http://localhost:5001](http://localhost:5001)
+   - App: [http://127.0.0.1:5173](http://127.0.0.1:5173) (Vite proxies `/api` to the gateway on :3000)
+  
 
-> [!IMPORTANT]
-> You need **`LLM_API_KEY`** and **`ZEP_API_KEY`** for the default cloud path. For **local LLMs** (no cloud key for the model), see [Ollama setup](docs/configuration/ollama.md).
+## What go-mirofish vs MiroFish
 
-## How it works (5 steps)
+| | MiroFish (upstream) | go-mirofish (this repo) |
+| --- | --- | --- |
+| Control plane | Python / Flask (plus JS frontend) | **Go** (`gateway/`) — all `/api/*` routes |
+| Local dev | Python venv, Flask, often multi-service | **Docker** gateway + **local** Vite (`make up` + `npm run dev`) |
+| Simulation worker | Python-side integration | **Go-native** worker in the gateway process |
+| Benchmarks & examples | Mixed scripts | **Go** `go-mirofish-examples` + bench tools + `mirofish-hybrid` helpers |
+| Product Python | Required on the hot path | **Removed** (no `backend/.venv` in this tree) |
+| Design goal | Full MiroFish upstream feature set | **Local-first**: lower moving parts, one gateway binary, fewer host dependencies |
 
-1. **Graph building** — upload seed documents; build the knowledge graph  
-2. **Environment setup** — extract entities, personas, and agent configuration  
-3. **Simulation** — run the multi-agent social simulation  
-4. **Report generation** — produce an analysis report from the simulated world  
-5. **Deep interaction** — chat with agents and the report assistant  
+> [!NOTE]
+> RAM/startup “targets” depend on model provider, graph size, and simulation profile. For supported setup, see [Installation](docs/getting-started/installation.md).
+
+## 🌐 Live Demo
+
+- Static playground (zero-cost replay): [gomirofish.vercel.app](https://gomirofish.vercel.app)
+
+## 📸 Screenshots
+
+<div align="center">
+  <table>
+    <tr>
+      <td align="center">
+        <img src="https://github.com/go-mirofish/go-mirofish/blob/main/static/image/Screenshot/Screenshot(1).png" width="520" />
+        <br />
+        <sub><b>Home / entry</b></sub>
+      </td>
+      <td align="center">
+        <img src="https://github.com/go-mirofish/go-mirofish/blob/main/static/image/Screenshot/Screenshot(2).png" width="520" />
+        <br />
+        <sub><b>Simulation run</b></sub>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <img src="https://github.com/go-mirofish/go-mirofish/blob/main/static/image/Screenshot/Screenshot(3).png" width="520" />
+        <br />
+        <sub><b>Report generation</b></sub>
+      </td>
+      <td align="center">
+        <img src="https://github.com/go-mirofish/go-mirofish/blob/main/static/image/Screenshot/Screenshot(4).png" width="520" />
+        <br />
+        <sub><b>Report timeline / tools</b></sub>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <img src="https://github.com/go-mirofish/go-mirofish/blob/main/static/image/Screenshot/Screenshot(5).png" width="520" />
+        <br />
+        <sub><b>Simulation history</b></sub>
+      </td>
+      <td align="center">
+        <img src="https://github.com/go-mirofish/go-mirofish/blob/main/static/image/Screenshot/Screenshot(6).png" width="520" />
+        <br />
+        <sub><b>Deep interaction</b></sub>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <img src="https://github.com/go-mirofish/go-mirofish/blob/main/static/image/Screenshot/Screenshot(7).png" width="520" />
+        <br />
+        <sub><b>Split: graph, workbench &amp; system terminal</b></sub>
+      </td>
+      <td align="center">
+        <img src="https://github.com/go-mirofish/go-mirofish/blob/main/static/image/Screenshot/Screenshot(8).png" width="520" />
+        <br />
+        <sub><b>Graph view &amp; node details</b></sub>
+      </td>
+    </tr>
+  </table>
+</div>
+
 
 ## Hardware compatibility
 
