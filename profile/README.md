@@ -72,7 +72,7 @@ Upload documents, describe what you want to predict, and get a full simulation r
 
 ## 🌐 Live Demo
 
-- Static playground (zero-cost replay): [gomirofish.vercel.app](https://gomirofish.vercel.app)
+- Static playground (zero-cost replay): [https://go-mirofish.vercel.app](https://go-mirofish.vercel.app)
 
 ## 📸 Screenshots
 
